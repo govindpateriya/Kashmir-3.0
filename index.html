@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <title>Mustaq's Kashmir – Premium Travel</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
   <meta name="description" content="Premium Kashmir tour and travel packages by Mustaq – Trusted Travel Agent with WhatsApp booking." />
 
   <!-- OPTIONAL: Nice clean font (not a CSS library, just a font) -->
@@ -238,6 +238,15 @@
 
     /* Parallax removed for performance */
 
+    html {
+      background: #020617;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      overflow-x: hidden;
+      overflow-y: auto;
+      height: 100%;
+    }
+
     body {
       min-height: 100vh;
       background: #020617;
@@ -251,11 +260,11 @@
       -webkit-font-smoothing: antialiased;
       position: relative;
       overflow-x: hidden;
-    }
-
-    html {
-      background: #020617;
-      scroll-behavior: smooth;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
+      width: 100%;
+      height: auto;
     }
 
     img {
@@ -274,6 +283,10 @@
       display: flex;
       flex-direction: column;
       background: transparent;
+      position: relative;
+      width: 100%;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
     }
 
     .container {
@@ -286,6 +299,9 @@
     .section {
       padding: 72px 0 24px;
       background: transparent;
+      position: relative;
+      width: 100%;
+      touch-action: pan-y;
     }
 
     /* =========== NAVBAR =========== */
@@ -298,6 +314,8 @@
       border-bottom: 1px solid rgba(15, 23, 42, 1);
       animation: fadeInDown 0.6s ease-out;
       transition: box-shadow 0.3s ease;
+      touch-action: pan-y;
+      -webkit-overflow-scrolling: touch;
     }
 
     @keyframes fadeInDown {
@@ -1099,7 +1117,36 @@
       }
     }
 
-    /* Fix white background on scroll */
+    /* =========== MOBILE SCROLLING FIX =========== */
+    @media (max-width: 768px) {
+      html, body {
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        height: auto !important;
+        position: relative !important;
+      }
+
+      .page-wrap {
+        min-height: 100vh;
+        overflow-x: hidden;
+        overflow-y: visible;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .navbar {
+        position: -webkit-sticky;
+        position: sticky;
+        touch-action: pan-y;
+      }
+
+      .section {
+        overflow: visible;
+        touch-action: pan-y;
+      }
+    }
+
+    /* Fix white background on scroll and mobile touch */
     * {
       -webkit-tap-highlight-color: transparent;
     }
@@ -1107,6 +1154,15 @@
     html, body {
       background-color: #020617 !important;
       overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
+    }
+
+    /* Ensure all scrollable elements work on mobile */
+    body, .page-wrap, .section, .container {
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
     }
 
     body::before {
@@ -1130,6 +1186,10 @@
     html {
       scroll-behavior: smooth;
       scroll-padding-top: 80px;
+      -webkit-overflow-scrolling: touch;
+      overflow-x: hidden;
+      overflow-y: auto;
+      height: 100%;
     }
 
     @media (prefers-reduced-motion: no-preference) {
