@@ -116,17 +116,7 @@
       }
     }
 
-    @keyframes gradient {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    }
+    /* Heavy gradient animation removed */
 
     @keyframes rotate {
       from {
@@ -170,24 +160,26 @@
     }
 
     .loader {
-      width: 60px;
-      height: 60px;
-      border: 4px solid rgba(34, 211, 238, 0.2);
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(34, 211, 238, 0.2);
       border-top-color: #22d3ee;
       border-radius: 50%;
-      animation: rotate 1s linear infinite;
+      animation: rotate 0.8s linear infinite;
+      will-change: transform;
     }
 
-    /* Scroll Animation Classes */
+    /* Optimized Scroll Animation Classes */
     .fade-in-up {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      transform: translate3d(0, 30px, 0);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      will-change: opacity, transform;
     }
 
     .fade-in-up.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translate3d(0, 0, 0);
     }
 
     .fade-in {
@@ -223,13 +215,14 @@
 
     .scale-in {
       opacity: 0;
-      transform: scale(0.85);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      transform: scale3d(0.95, 0.95, 1);
+      transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+      will-change: opacity, transform;
     }
 
     .scale-in.visible {
       opacity: 1;
-      transform: scale(1);
+      transform: scale3d(1, 1, 1);
     }
 
     .delay-1 { transition-delay: 0.1s; }
@@ -243,29 +236,26 @@
       animation: float 3s ease-in-out infinite;
     }
 
-    /* Parallax Background */
-    .parallax-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background:
-        radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.15), transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(45, 212, 191, 0.18), transparent 50%),
-        linear-gradient(180deg, #020617 0%, #020617 40%, #020617 100%);
-      background-size: 200% 200%;
-      animation: gradient 15s ease infinite;
-    }
+    /* Parallax removed for performance */
 
     body {
       min-height: 100vh;
+      background: #020617;
+      background-image:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.15), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(45, 212, 191, 0.18), transparent 55%),
+        linear-gradient(180deg, #020617 0%, #020617 40%, #020617 100%);
+      background-attachment: fixed;
       color: var(--text-main);
       font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       -webkit-font-smoothing: antialiased;
       position: relative;
       overflow-x: hidden;
+    }
+
+    html {
+      background: #020617;
+      scroll-behavior: smooth;
     }
 
     img {
@@ -283,6 +273,7 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      background: transparent;
     }
 
     .container {
@@ -294,6 +285,7 @@
 
     .section {
       padding: 72px 0 24px;
+      background: transparent;
     }
 
     /* =========== NAVBAR =========== */
@@ -681,8 +673,8 @@
     }
 
     .place-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 22px 40px rgba(15, 23, 42, 0.95);
+      transform: translate3d(0, -6px, 0);
+      box-shadow: 0 20px 35px rgba(15, 23, 42, 0.95);
       border-color: rgba(94, 234, 212, 0.6);
     }
 
@@ -795,8 +787,8 @@
     }
 
     .package-card:hover {
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 24px 45px rgba(15, 23, 42, 1);
+      transform: translate3d(0, -5px, 0);
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 1);
       border-color: rgba(94, 234, 212, 0.5);
     }
 
@@ -1106,6 +1098,157 @@
         height: 48px;
       }
     }
+
+    /* Fix white background on scroll */
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      background-color: #020617 !important;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #020617;
+      background-image:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.15), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(45, 212, 191, 0.18), transparent 55%),
+        linear-gradient(180deg, #020617 0%, #020617 40%, #020617 100%);
+      background-attachment: fixed;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    /* =========== ADVANCED SMOOTH SCROLLING =========== */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      html {
+        scroll-behavior: smooth;
+      }
+    }
+
+    /* =========== OPTIMIZED LOADING SCREEN =========== */
+    .loader-overlay {
+      background: #020617;
+    }
+
+    .loader {
+      border: 4px solid rgba(34, 211, 238, 0.2);
+      border-top-color: #22d3ee;
+      border-right-color: #06b6d4;
+      animation: rotate 1s linear infinite, pulse-loader 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-loader {
+      0%, 100% {
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+      }
+      50% {
+      box-shadow: 0 0 40px rgba(34, 211, 238, 0.8);
+      }
+    }
+
+    /* =========== CURSOR TRAIL EFFECT =========== */
+    .cursor-trail {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(34, 211, 238, 0.6), transparent);
+      pointer-events: none;
+      z-index: 9998;
+      transition: transform 0.1s ease;
+      mix-blend-mode: screen;
+    }
+
+    /* Card hover optimized */
+    .place-card, .package-card {
+      will-change: transform;
+      transform: translateZ(0);
+    }
+
+    /* Glow effects removed for performance */
+
+    /* =========== ENHANCED BUTTON EFFECTS =========== */
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    /* =========== IMAGE ZOOM EFFECT =========== */
+    .place-img, .hero-main-img {
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* =========== TEXT REVEAL ANIMATION =========== */
+    @keyframes text-reveal {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+        filter: blur(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    .hero-title, .section-title {
+      animation: text-reveal 1s ease-out;
+    }
+
+    /* =========== FLOATING ELEMENTS =========== */
+    .float-gentle {
+      animation: float-gentle 6s ease-in-out infinite;
+    }
+
+    @keyframes float-gentle {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-15px) rotate(2deg);
+      }
+    }
+
+    /* =========== SCROLL INDICATOR =========== */
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #22d3ee, #06b6d4);
+      z-index: 9999;
+      transition: width 0.1s ease;
+    }
   </style>
 </head>
 
@@ -1115,8 +1258,8 @@
     <div class="loader"></div>
   </div>
 
-  <!-- Parallax Background -->
-  <div class="parallax-bg"></div>
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-indicator" id="scrollIndicator"></div>
 
 <div class="page-wrap">
 
@@ -1124,7 +1267,7 @@
   <header class="navbar">
     <div class="container navbar-inner">
       <div class="nav-left">
-        <div class="logo-mark float-animation">M</div>
+        <div class="logo-mark float-gentle">M</div>
         <div>
           <div class="logo-text-primary">Mustaq's Kashmir</div>
           <div class="logo-text-sub">Trusted Travel Agent</div>
@@ -1399,11 +1542,18 @@
           <div class="contact-label">Direct contact with Mustaq</div>
           <p class="contact-value">
             Phone:
-            <a href="tel:+919999999999" class="contact-link">+91 99999 99999</a>
+            <a href="tel:+919906432269" class="contact-link">+91 99064 32269</a>
           </p>
           <p class="contact-value">
             Email:
-            <a href="mailto:info@mustaqkashmir.com" class="contact-link">info@mustaqkashmir.com</a>
+            <a href="mailto:travelstampholidays@gmail.com" class="contact-link">travelstampholidays@gmail.com</a>
+          </p>
+          <p class="contact-value">
+            Location:
+            <span style="color: var(--text-muted);">Yatri Bhawan, Durga Nag, Dalgate, Srinagar</span>
+            <a href="https://maps.google.com/?q=Yatri+Bhawan+Durga+Nag+Dalgate+Srinagar" target="_blank" class="contact-link" style="margin-left: 8px; display: inline-flex; align-items: center; gap: 4px;">
+              📍 Show on Map
+            </a>
           </p>
 
           <div style="margin-top:14px;">
@@ -1415,7 +1565,7 @@
           </div>
 
           <div style="margin-top:16px;">
-            <button class="btn btn-primary btn-xs" onclick="openWhatsApp('Hi, I want a Kashmir trip plan. We are __ people and planning in __ month.')">
+            <button class="btn btn-primary btn-xs" onclick="openWhatsApp('Hi Mustaq, I want a Kashmir trip plan. We are __ people and planning in __ month.')">
               Open WhatsApp chat
             </button>
           </div>
@@ -1476,17 +1626,69 @@
   // ⚠️ WhatsApp Number with Country Code (India: 91)
   const WHATSAPP_NUMBER = "919906432269"; // Full number: 91 (country code) + 9906432269
 
-  // Loading Screen
+  // Fast Loading Screen
   window.addEventListener('load', function() {
     const loader = document.getElementById('loader');
     setTimeout(function() {
       loader.classList.add('hidden');
-      // Trigger initial animations after load
-      setTimeout(function() {
-        triggerScrollAnimations();
-      }, 100);
-    }, 800);
+      // Trigger initial animations immediately
+      triggerScrollAnimations();
+    }, 400);
   });
+
+  // Particles removed for better performance
+
+  // =========== SCROLL PROGRESS INDICATOR ===========
+  function initScrollIndicator() {
+    const indicator = document.getElementById('scrollIndicator');
+    if (!indicator) return;
+    
+    let ticking = false;
+    
+    function updateIndicator() {
+      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (window.scrollY / windowHeight) * 100;
+      indicator.style.width = scrolled + '%';
+      ticking = false;
+    }
+    
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateIndicator);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  // =========== ENHANCED SMOOTH SCROLLING ===========
+  function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#' || !href) return;
+        
+        const target = document.querySelector(href);
+        if (!target) return;
+        
+        e.preventDefault();
+        
+        const offsetTop = target.offsetTop - 80;
+        
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+        
+        // Close mobile nav if open
+        if (window.innerWidth <= 720) {
+          const navLinksMobile = document.getElementById('nav-links-mobile');
+          const navToggle = document.getElementById('nav-toggle');
+          if (navLinksMobile) navLinksMobile.style.display = 'none';
+          if (navToggle) navToggle.classList.remove('open');
+        }
+      });
+    });
+  }
 
   function openWhatsApp(message) {
     const text = encodeURIComponent(message);
@@ -1538,24 +1740,19 @@
     });
   }
 
-  // Parallax Effect
+  // Lightweight parallax removed for performance
   function parallaxEffect() {
-    const parallaxBg = document.querySelector('.parallax-bg');
-    if (!parallaxBg) return;
-    
-    window.addEventListener('scroll', function() {
-      const scrolled = window.pageYOffset;
-      const rate = scrolled * 0.3;
-      parallaxBg.style.transform = `translateY(${rate}px)`;
-    });
+    // Removed for better performance
   }
 
-  // Navbar scroll effect
+  // Optimized Navbar scroll effect
   function navbarScrollEffect() {
     const navbar = document.querySelector('.navbar');
-    let lastScroll = 0;
+    if (!navbar) return;
     
-    window.addEventListener('scroll', function() {
+    let ticking = false;
+    
+    function updateNavbar() {
       const currentScroll = window.pageYOffset;
       
       if (currentScroll > 100) {
@@ -1564,8 +1761,15 @@
         navbar.style.boxShadow = 'none';
       }
       
-      lastScroll = currentScroll;
-    });
+      ticking = false;
+    }
+    
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateNavbar);
+        ticking = true;
+      }
+    }, { passive: true });
   }
 
   // Navbar toggle (mobile)
@@ -1599,41 +1803,24 @@
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener("click", function (e) {
-      const targetId = this.getAttribute("href");
-      if (!targetId || targetId === "#") return;
-      const target = document.querySelector(targetId);
-      if (!target) return;
-      e.preventDefault();
-      window.scrollTo({
-        top: target.offsetTop - 80,
-        behavior: "smooth"
-      });
-      // close mobile nav if open
-      if (window.innerWidth <= 720 && navLinksMobile) {
-        navLinksMobile.style.display = "none";
-        if (navToggle) navToggle.classList.remove("open");
-      }
-    });
-  });
-
   // Initialize on DOM ready
   document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all advanced features
     triggerScrollAnimations();
     parallaxEffect();
     navbarScrollEffect();
+    initScrollIndicator();
+    initSmoothScroll();
     
-    // Trigger animations for elements already in view
+    // Fast animations for elements already in view
     setTimeout(function() {
       const heroElements = document.querySelectorAll('.hero .fade-in-up, .hero .scale-in');
       heroElements.forEach((el, index) => {
         setTimeout(() => {
           el.classList.add('visible');
-        }, index * 150);
+        }, index * 100);
       });
-    }, 500);
+    }, 200);
   });
 
   // Re-trigger animations on resize
