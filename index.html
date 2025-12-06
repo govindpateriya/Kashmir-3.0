@@ -1,0 +1,1649 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Mustaq's Kashmir – Premium Travel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Premium Kashmir tour and travel packages by Mustaq – Trusted Travel Agent with WhatsApp booking." />
+
+  <!-- OPTIONAL: Nice clean font (not a CSS library, just a font) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========== RESET & BASE =========== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-main: #020617;
+      --bg-alt: #050816;
+      --glass: rgba(15, 23, 42, 0.85);
+      --glass-soft: rgba(15, 23, 42, 0.75);
+      --border-soft: rgba(148, 163, 184, 0.25);
+      --accent: #06b6d4;
+      --accent-soft: rgba(45, 212, 191, 0.1);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 20px 35px rgba(15, 23, 42, 0.95);
+      --transition-fast: 0.22s ease-out;
+    }
+
+    /* =========== ANIMATIONS =========== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 18px 32px rgba(22, 163, 74, 0.85);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 22px 40px rgba(22, 163, 74, 0.95);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -1000px 0;
+      }
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes sparkle {
+      0%, 100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Loading Screen */
+    .loader-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    }
+
+    .loader-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 4px solid rgba(34, 211, 238, 0.2);
+      border-top-color: #22d3ee;
+      border-radius: 50%;
+      animation: rotate 1s linear infinite;
+    }
+
+    /* Scroll Animation Classes */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transition: opacity 1s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+    }
+
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .slide-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .slide-in-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .slide-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.85);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .scale-in.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+
+    /* Floating animation */
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Parallax Background */
+    .parallax-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.15), transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(45, 212, 191, 0.18), transparent 50%),
+        linear-gradient(180deg, #020617 0%, #020617 40%, #020617 100%);
+      background-size: 200% 200%;
+      animation: gradient 15s ease infinite;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text-main);
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========== LAYOUT HELPERS =========== */
+    .page-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    .section {
+      padding: 72px 0 24px;
+    }
+
+    /* =========== NAVBAR =========== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.98));
+      border-bottom: 1px solid rgba(15, 23, 42, 1);
+      animation: fadeInDown 0.6s ease-out;
+      transition: box-shadow 0.3s ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #22d3ee, #14b8a6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      color: #0f172a;
+      box-shadow: 0 10px 25px rgba(8, 47, 73, 0.9);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .logo-mark::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: rotate(45deg);
+      animation: shimmer 3s infinite;
+    }
+
+    .logo-mark:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 15px 35px rgba(8, 47, 73, 1);
+    }
+
+    .logo-text-primary {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 15px;
+    }
+
+    .logo-text-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      position: relative;
+      padding-bottom: 2px;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #22d3ee, #06b6d4);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: #e5e7eb;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #22d3ee, #06b6d4);
+      color: #0f172a;
+      box-shadow: 0 14px 28px rgba(8, 47, 73, 0.8);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 32px rgba(8, 47, 73, 0.95), 0 0 25px rgba(34, 211, 238, 0.6);
+      background: linear-gradient(135deg, #38bdf8, #06b6d4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      background: rgba(15, 23, 42, 0.8);
+      transform: translateY(-1px);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: #020617;
+      color: #e5e7eb;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .nav-toggle span,
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      display: block;
+      width: 16px;
+      height: 2px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      position: relative;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+    }
+
+    .nav-toggle span::before {
+      top: -5px;
+    }
+
+    .nav-toggle span::after {
+      top: 5px;
+    }
+
+    .nav-toggle.open span {
+      transform: rotate(45deg);
+    }
+
+    .nav-toggle.open span::before {
+      opacity: 0;
+    }
+
+    .nav-toggle.open span::after {
+      transform: rotate(-90deg);
+      top: 0;
+    }
+
+    .nav-links-mobile {
+      display: none;
+      padding: 0 18px 12px;
+    }
+
+    .nav-links-mobile a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .nav-links-mobile a:hover {
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+    }
+
+    /* =========== HERO =========== */
+    .hero {
+      padding-top: 32px;
+      padding-bottom: 40px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 38px;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 3vw + 18px, 42px);
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin-bottom: 18px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+    }
+
+    .hero-pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-img-wrap {
+      position: relative;
+      border-radius: 26px;
+      overflow: hidden;
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 55%);
+      box-shadow: var(--shadow-soft);
+      min-height: 260px;
+    }
+
+    .hero-main-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.03);
+      transition: transform 16s ease-in-out;
+    }
+
+    .hero-img-wrap:hover .hero-main-img {
+      transform: scale(1.06);
+    }
+
+    .hero-tag {
+      position: absolute;
+      left: 14px;
+      bottom: 16px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.86);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 11px;
+      max-width: 70%;
+    }
+
+    .hero-tag-title {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .hero-tag-text {
+      color: var(--text-muted);
+    }
+
+    .hero-stat {
+      position: absolute;
+      right: 14px;
+      top: 16px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* =========== SECTION TITLES =========== */
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      font-size: 19px;
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* =========== PLACES =========== */
+    .places-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .place-card {
+      background: var(--glass);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.8);
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+      position: relative;
+    }
+
+    .place-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 22px 40px rgba(15, 23, 42, 0.95);
+      border-color: rgba(94, 234, 212, 0.6);
+    }
+
+    .place-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.05), rgba(45, 212, 191, 0.05));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: var(--radius-lg);
+      pointer-events: none;
+    }
+
+    .place-card:hover::before {
+      opacity: 1;
+    }
+
+    .place-img-wrap {
+      position: relative;
+      height: 170px;
+      overflow: hidden;
+    }
+
+    .place-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.08);
+      transition: transform 2.2s ease-out;
+    }
+
+    .place-card:hover .place-img {
+      transform: scale(1.14);
+    }
+
+    .place-duration {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.86);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+    }
+
+    .place-body {
+      padding: 14px 14px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .place-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .place-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .place-footer {
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .link-ask {
+      border-radius: 999px;
+      padding: 6px 10px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.95);
+      cursor: pointer;
+    }
+
+    .link-ask:hover {
+      border-color: var(--accent);
+      color: #e5e7eb;
+    }
+
+    /* =========== PACKAGES =========== */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .package-card {
+      background: var(--glass-soft);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 16px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 190px;
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .package-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 24px 45px rgba(15, 23, 42, 1);
+      border-color: rgba(94, 234, 212, 0.5);
+    }
+
+    .package-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.08), rgba(45, 212, 191, 0.08));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: var(--radius-lg);
+      pointer-events: none;
+    }
+
+    .package-card:hover::before {
+      opacity: 1;
+    }
+
+    .package-card.popular {
+      border-color: rgba(56, 189, 248, 0.9);
+      box-shadow: 0 20px 40px rgba(8, 47, 73, 0.98);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    .package-card.popular:hover {
+      animation: none;
+      transform: translateY(-8px) scale(1.03);
+    }
+
+    .badge-popular {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      font-size: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #67e8f9;
+      border: 1px solid rgba(45, 212, 191, 0.7);
+    }
+
+    .package-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .package-days {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .package-price {
+      font-size: 18px;
+      font-weight: 700;
+      color: #22d3ee;
+      margin-bottom: 8px;
+    }
+
+    .package-list {
+      list-style: none;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .package-list li + li {
+      margin-top: 4px;
+    }
+
+    .package-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .btn-xs {
+      padding: 7px 14px;
+      font-size: 12px;
+    }
+
+    /* =========== CONTACT =========== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.1fr);
+      gap: 22px;
+    }
+
+    .contact-card {
+      background: var(--glass);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow-soft);
+      font-size: 13px;
+    }
+
+    .contact-card p + p {
+      margin-top: 6px;
+    }
+
+    .contact-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 13px;
+    }
+
+    .contact-link {
+      color: #67e8f9;
+    }
+
+    .contact-form {
+      background: var(--glass-soft);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow-soft);
+      font-size: 13px;
+    }
+
+    .field-group {
+      margin-bottom: 12px;
+    }
+
+    .field-label {
+      font-size: 12px;
+      margin-bottom: 4px;
+      color: var(--text-muted);
+    }
+
+    .field-input,
+    .field-textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-main);
+      padding: 9px 11px;
+      font-size: 13px;
+      outline: none;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+    }
+
+    .field-input:focus,
+    .field-textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(45, 212, 191, 0.5);
+      background: rgba(15, 23, 42, 1);
+    }
+
+    .field-textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    /* =========== FOOTER =========== */
+    .footer {
+      margin-top: auto;
+      border-top: 1px solid rgba(15, 23, 42, 1);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.98));
+    }
+
+    .footer-inner {
+      padding: 18px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+    }
+
+    .footer-links a:hover {
+      color: #e5e7eb;
+    }
+
+    /* =========== FLOATING WHATSAPP =========== */
+    .wa-float {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 60;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 18px 32px rgba(22, 163, 74, 0.85);
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .wa-float:hover {
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 22px 38px rgba(22, 163, 74, 0.95);
+      animation: none;
+    }
+
+    .wa-icon-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 2px solid #0f172a;
+      position: relative;
+    }
+
+    .wa-icon-dot::before {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border-radius: inherit;
+      border: 2px solid #0f172a;
+      border-top-color: transparent;
+      border-right-color: transparent;
+      transform: rotate(-25deg);
+    }
+
+    /* =========== RESPONSIVE =========== */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-img-wrap {
+        order: -1;
+      }
+
+      .places-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .packages-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .navbar-inner {
+        padding-inline: 14px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .hero {
+        padding-top: 20px;
+      }
+
+      .section {
+        padding-top: 56px;
+      }
+
+      .places-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .packages-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-meta {
+        display: none;
+      }
+
+      .wa-float {
+        width: 48px;
+        height: 48px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Loading Screen -->
+  <div id="loader" class="loader-overlay">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Parallax Background -->
+  <div class="parallax-bg"></div>
+
+<div class="page-wrap">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <div class="nav-left">
+        <div class="logo-mark float-animation">M</div>
+        <div>
+          <div class="logo-text-primary">Mustaq's Kashmir</div>
+          <div class="logo-text-sub">Trusted Travel Agent</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#places" class="nav-link">Places</a>
+        <a href="#packages" class="nav-link">Packages</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-cta">
+        <button id="nav-wa-btn" class="btn btn-primary">Chat on WhatsApp</button>
+        <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <div id="nav-links-mobile" class="nav-links-mobile container">
+      <a href="#places">Places</a>
+      <a href="#packages">Packages</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="fade-in-up">
+        <div class="hero-kicker fade-in-up delay-1">KASHMIR • TOURS • GETAWAYS</div>
+        <h1 class="hero-title fade-in-up delay-2">
+          Discover Kashmir with Mustaq — calm lakes, snowy peaks & alpine meadows.
+        </h1>
+        <p class="hero-subtitle fade-in-up delay-3">
+          Curated tour packages by Mustaq with stays, transport and activities. Share your dates on WhatsApp and get a customised itinerary in minutes.
+        </p>
+
+        <div class="hero-meta fade-in-up delay-4">
+          <div class="hero-pill">
+            <span>📍</span><span>Based in Kashmir</span>
+          </div>
+          <div class="hero-pill">
+            <span>⭐</span><span>Trusted by travellers</span>
+          </div>
+          <div class="hero-pill">
+            <span>⚡</span><span>Fast WhatsApp support</span>
+          </div>
+        </div>
+
+        <div class="hero-actions fade-in-up delay-5">
+          <a href="#packages" class="btn btn-primary">View Packages</a>
+          <button id="hero-wa-btn" class="btn btn-outline">Chat on WhatsApp</button>
+        </div>
+      </div>
+
+      <div class="hero-img-wrap scale-in">
+        <img
+          class="hero-main-img"
+          src="https://images.unsplash.com/photo-1564329494258-3f72215ba175?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGFsJTIwbGFrZXxlbnwwfHwwfHx8MA%3D%3D"
+          alt="Kashmir – Dal Lake"
+        />
+        <div class="hero-stat">Avg. 5–7 day stays</div>
+        <div class="hero-tag">
+          <div class="hero-tag-title">Srinagar — Dal Lake</div>
+          <div class="hero-tag-text">Houseboats, shikara rides and sunrise views included in most packages.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLACES -->
+  <section id="places" class="section">
+    <div class="container">
+      <div class="section-heading fade-in-up">
+        <div>
+          <h2 class="section-title">Top Places in Kashmir</h2>
+          <p class="section-subtitle">Handpicked spots by Mustaq you can mix & match in your package.</p>
+        </div>
+      </div>
+
+      <div class="places-grid">
+        <!-- Srinagar -->
+        <article class="place-card fade-in-up delay-1">
+          <div class="place-img-wrap">
+            <img
+              class="place-img"
+              src="https://plus.unsplash.com/premium_photo-1697729729075-3e56242aef49?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Srinagar"
+            />
+            <div class="place-duration">2–3 days</div>
+          </div>
+          <div class="place-body">
+            <div class="place-title">Srinagar</div>
+            <div class="place-desc">Dal Lake, shikara rides, Mughal gardens and cosy houseboats.</div>
+            <div class="place-footer">
+              <span>Perfect for couples</span>
+              <button class="link-ask" onclick="openWhatsApp('I want Srinagar included in the package.')">
+                Ask for Srinagar
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Gulmarg -->
+        <article class="place-card fade-in-up delay-2">
+          <div class="place-img-wrap">
+            <img
+              class="place-img"
+              src="https://images.unsplash.com/photo-1649794759593-ad80231b7b7c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Gulmarg"
+            />
+            <div class="place-duration">1–2 days</div>
+          </div>
+          <div class="place-body">
+            <div class="place-title">Gulmarg</div>
+            <div class="place-desc">Snow, gondola ride, ski slopes and incredible winter landscapes.</div>
+            <div class="place-footer">
+              <span>Adventure & snow</span>
+              <button class="link-ask" onclick="openWhatsApp('I want Gulmarg and snow activities.')">
+                Ask for Gulmarg
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Pahalgam -->
+        <article class="place-card fade-in-up delay-3">
+          <div class="place-img-wrap">
+            <img
+              class="place-img"
+              src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200&auto=format&fit=crop"
+              alt="Pahalgam"
+            />
+            <div class="place-duration">2 days</div>
+          </div>
+          <div class="place-body">
+            <div class="place-title">Pahalgam</div>
+            <div class="place-desc">Riverside walks, Betaab Valley, pine forests and chill vibes.</div>
+            <div class="place-footer">
+              <span>Great for families</span>
+              <button class="link-ask" onclick="openWhatsApp('I want Pahalgam for 2 days.')">
+                Ask for Pahalgam
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sonamarg -->
+        <article class="place-card fade-in-up delay-4">
+          <div class="place-img-wrap">
+            <img
+              class="place-img"
+              src="https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?q=80&w=1200&auto=format&fit=crop"
+              alt="Sonamarg"
+            />
+            <div class="place-duration">1 day</div>
+          </div>
+          <div class="place-body">
+            <div class="place-title">Sonamarg</div>
+            <div class="place-desc">Glaciers, pony rides and scenic drives along the Sindh river.</div>
+            <div class="place-footer">
+              <span>High-altitude views</span>
+              <button class="link-ask" onclick="openWhatsApp('I want Sonamarg day trip.')">
+                Ask for Sonamarg
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section id="packages" class="section">
+    <div class="container">
+      <div class="section-heading fade-in-up">
+        <div>
+          <h2 class="section-title">Mustaq's Popular Kashmir Packages</h2>
+          <p class="section-subtitle">You can book as-is or use them as a starting point.</p>
+        </div>
+        <div class="section-subtitle">Prices are sample – fully customisable on WhatsApp.</div>
+      </div>
+
+      <div class="packages-grid">
+        <!-- Romantic Srinagar -->
+        <article class="package-card fade-in-up delay-1">
+          <div>
+            <h3 class="package-title">Romantic Srinagar</h3>
+            <div class="package-days">3 days · 2 nights</div>
+            <div class="package-price">₹12,499</div>
+            <ul class="package-list">
+              <li>Houseboat stay on Dal Lake</li>
+              <li>Sunset shikara ride</li>
+              <li>Mughal gardens and local market visit</li>
+            </ul>
+          </div>
+          <div class="package-actions">
+            <button class="btn btn-primary btn-xs"
+                    onclick="openWhatsApp('I want details for Romantic Srinagar package.')">
+              Query on WhatsApp
+            </button>
+            <button class="btn btn-outline btn-xs">
+              Block dates
+            </button>
+          </div>
+        </article>
+
+        <!-- Adventure Gulmarg -->
+        <article class="package-card fade-in-up delay-2">
+          <div>
+            <h3 class="package-title">Adventure Gulmarg</h3>
+            <div class="package-days">2 days · 1 night</div>
+            <div class="package-price">₹9,999</div>
+            <ul class="package-list">
+              <li>Gondola tickets assistance</li>
+              <li>Snow activities / skiing options</li>
+              <li>Transfers from Srinagar</li>
+            </ul>
+          </div>
+          <div class="package-actions">
+            <button class="btn btn-primary btn-xs"
+                    onclick="openWhatsApp('I want details for Adventure Gulmarg package.')">
+              Query on WhatsApp
+            </button>
+            <button class="btn btn-outline btn-xs">
+              Customise trip
+            </button>
+          </div>
+        </article>
+
+        <!-- Complete Kashmir -->
+        <article class="package-card popular fade-in-up delay-3">
+          <div class="badge-popular">Most booked</div>
+          <div>
+            <h3 class="package-title">Complete Kashmir Circuit</h3>
+            <div class="package-days">6 days · 5 nights</div>
+            <div class="package-price">₹24,999</div>
+            <ul class="package-list">
+              <li>Srinagar · Gulmarg · Pahalgam · Sonamarg</li>
+              <li>Comfort hotels with breakfast</li>
+              <li>Private cab for full trip</li>
+            </ul>
+          </div>
+          <div class="package-actions">
+            <button class="btn btn-primary btn-xs"
+                    onclick="openWhatsApp('I want to book the Complete Kashmir package.')">
+              Book / Check dates
+            </button>
+            <button class="btn btn-outline btn-xs">
+              Make it luxury
+            </button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-heading fade-in-up">
+        <div>
+          <h2 class="section-title">Contact Mustaq & WhatsApp Queries</h2>
+          <p class="section-subtitle">Send your travel dates and group size – Mustaq will reply with a detailed plan.</p>
+        </div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card fade-in-up delay-1">
+          <div class="contact-label">Direct contact with Mustaq</div>
+          <p class="contact-value">
+            Phone:
+            <a href="tel:+919999999999" class="contact-link">+91 99999 99999</a>
+          </p>
+          <p class="contact-value">
+            Email:
+            <a href="mailto:info@mustaqkashmir.com" class="contact-link">info@mustaqkashmir.com</a>
+          </p>
+
+          <div style="margin-top:14px;">
+            <div class="contact-label">Quick pointers</div>
+            <p>Share:</p>
+            <p>• Number of people</p>
+            <p>• Dates or month</p>
+            <p>• Budget range</p>
+          </div>
+
+          <div style="margin-top:16px;">
+            <button class="btn btn-primary btn-xs" onclick="openWhatsApp('Hi, I want a Kashmir trip plan. We are __ people and planning in __ month.')">
+              Open WhatsApp chat
+            </button>
+          </div>
+        </div>
+
+        <form class="contact-form fade-in-up delay-2" onsubmit="handleContactForm(event)">
+          <div class="field-group">
+            <label class="field-label" for="name">Name</label>
+            <input id="name" class="field-input" required placeholder="Your full name" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="people">Travellers</label>
+            <input id="people" class="field-input" placeholder="e.g. 2 adults, 1 child" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="dates">Dates / Month</label>
+            <input id="dates" class="field-input" placeholder="e.g. 10–15 March or April first week" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="message">Message / preferences</label>
+            <textarea id="message" class="field-textarea" placeholder="Tell us what you’re looking for – romantic, adventure, family friendly, etc." required></textarea>
+          </div>
+
+          <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:4px;">
+            <button type="submit" class="btn btn-primary btn-xs">
+              Send details on WhatsApp
+            </button>
+            <span style="font-size:11px;color:var(--text-muted);">
+              We reply quickly during 10am – 8pm IST.
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer fade-in-up">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Mustaq's Kashmir. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#packages">View packages</a>
+        <a href="#contact">WhatsApp us</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- FLOATING WHATSAPP BUTTON -->
+<button id="wa-float" class="wa-float" aria-label="WhatsApp chat">
+  <div class="wa-icon-dot"></div>
+</button>
+
+<script>
+  // ⚠️ WhatsApp Number with Country Code (India: 91)
+  const WHATSAPP_NUMBER = "919906432269"; // Full number: 91 (country code) + 9906432269
+
+  // Loading Screen
+  window.addEventListener('load', function() {
+    const loader = document.getElementById('loader');
+    setTimeout(function() {
+      loader.classList.add('hidden');
+      // Trigger initial animations after load
+      setTimeout(function() {
+        triggerScrollAnimations();
+      }, 100);
+    }, 800);
+  });
+
+  function openWhatsApp(message) {
+    const text = encodeURIComponent(message);
+    const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + text;
+    
+    // Mobile compatibility: Use direct navigation instead of window.open
+    // This works better on mobile devices
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      window.location.href = url;
+    } else {
+      window.open(url, "_blank");
+    }
+  }
+
+  function handleContactForm(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value.trim();
+    const people = document.getElementById("people").value.trim();
+    const dates = document.getElementById("dates").value.trim();
+    const msg = document.getElementById("message").value.trim();
+
+    let text = "Kashmir trip enquiry with Mustaq%0A";
+    text += "Name: " + (name || "-") + "%0A";
+    text += "Travellers: " + (people || "-") + "%0A";
+    text += "Dates/Month: " + (dates || "-") + "%0A";
+    text += "Message: " + msg;
+
+    openWhatsApp(decodeURIComponent(text));
+  }
+
+  // Scroll Animation Observer
+  function triggerScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in, .slide-in-left, .slide-in-right, .scale-in');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    animatedElements.forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  // Parallax Effect
+  function parallaxEffect() {
+    const parallaxBg = document.querySelector('.parallax-bg');
+    if (!parallaxBg) return;
+    
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      const rate = scrolled * 0.3;
+      parallaxBg.style.transform = `translateY(${rate}px)`;
+    });
+  }
+
+  // Navbar scroll effect
+  function navbarScrollEffect() {
+    const navbar = document.querySelector('.navbar');
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', function() {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 100) {
+        navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+      } else {
+        navbar.style.boxShadow = 'none';
+      }
+      
+      lastScroll = currentScroll;
+    });
+  }
+
+  // Navbar toggle (mobile)
+  const navToggle = document.getElementById("nav-toggle");
+  const navLinksMobile = document.getElementById("nav-links-mobile");
+
+  if (navToggle) {
+    navToggle.addEventListener("click", function () {
+      const open = navLinksMobile.style.display === "block";
+      navLinksMobile.style.display = open ? "none" : "block";
+      navToggle.classList.toggle("open", !open);
+    });
+  }
+
+  // Attach WhatsApp to main CTAs
+  document.getElementById("nav-wa-btn")?.addEventListener("click", function () {
+    openWhatsApp("Hi Mustaq, I'm interested in Kashmir packages. Please share details.");
+  });
+
+  document.getElementById("hero-wa-btn")?.addEventListener("click", function () {
+    openWhatsApp("Hi Mustaq, I loved your website. I want a customised Kashmir package.");
+  });
+
+  document.getElementById("wa-float")?.addEventListener("click", function () {
+    openWhatsApp("Hi Mustaq, I want to plan a Kashmir trip.");
+  });
+
+  // Update footer year
+  const yearEl = document.getElementById("year");
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+    anchor.addEventListener("click", function (e) {
+      const targetId = this.getAttribute("href");
+      if (!targetId || targetId === "#") return;
+      const target = document.querySelector(targetId);
+      if (!target) return;
+      e.preventDefault();
+      window.scrollTo({
+        top: target.offsetTop - 80,
+        behavior: "smooth"
+      });
+      // close mobile nav if open
+      if (window.innerWidth <= 720 && navLinksMobile) {
+        navLinksMobile.style.display = "none";
+        if (navToggle) navToggle.classList.remove("open");
+      }
+    });
+  });
+
+  // Initialize on DOM ready
+  document.addEventListener('DOMContentLoaded', function() {
+    triggerScrollAnimations();
+    parallaxEffect();
+    navbarScrollEffect();
+    
+    // Trigger animations for elements already in view
+    setTimeout(function() {
+      const heroElements = document.querySelectorAll('.hero .fade-in-up, .hero .scale-in');
+      heroElements.forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add('visible');
+        }, index * 150);
+      });
+    }, 500);
+  });
+
+  // Re-trigger animations on resize
+  let resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      triggerScrollAnimations();
+    }, 250);
+  });
+</script>
+</body>
+</html>
